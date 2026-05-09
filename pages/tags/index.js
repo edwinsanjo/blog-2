@@ -9,7 +9,7 @@ export default function TagsIndex({ tags }) {
         {tags.map(tag => (
           <li key={tag}>
             <Link href={`/tags/${tag}`}>
-              <a>{tag}</a>
+              <a>#{tag}</a>
             </Link>
           </li>
         ))}

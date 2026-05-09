@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function TagPage({ tag, posts }) {
   return (
     <div className="container">
-      <h1>Posts tagged with "{tag}"</h1>
+      <h1>Posts tagged with "#{tag}"</h1>
       <Link href="/tags"><a>&larr; Back to all tags</a></Link>
       <ul>
         {posts.map(post => (

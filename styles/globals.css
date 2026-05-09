@@ -1,90 +1,67 @@
-:root {
-  --primary-color: #8ab4f8; /* default link color */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255, 255, 255;
+    --foreground: 37, 37, 37;
+    --accent: 247, 247, 247;
+    --border: 235, 235, 235;
+    --card: 255, 255, 255;
+    --secondary: 247, 247, 247;
+    --muted-foreground: 142, 142, 142;
+  }
+
+  .dark {
+    --background: 37, 37, 37;
+    --foreground: 251, 251, 251;
+    --accent: 68, 68, 68;
+    --border: 68, 68, 68;
+    --card: 37, 37, 37;
+    --secondary: 68, 68, 68;
+    --muted-foreground: 180, 180, 180;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    @apply antialiased selection:bg-purple-500 selection:text-white font-sans;
+    line-height: 1.6;
+  }
 }
 
-body {
-  background-color: #202020;
-  color: #dcdcdc;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  line-height: 1.6;
+@layer utilities {
+  .glass {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-hover {
+    @apply transition-colors hover:bg-white/10 dark:hover:bg-white/5;
+  }
 }
 
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
 
-a:hover {
-  text-decoration: none;
-}
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-color);
-}
+/* 
+### Light Theme
+- **Background**: `#faf8f3` - Warm, off-white base
+- **Foreground**: `#2d2d2d` - Deep charcoal for text
+- **Accent**: `#7c3aed` - Purple for interactive elements
+- **Border**: `#e0d5c7` - Soft tan for subtle divisions
+- **Card**: `#fff` - Pure white for content containers
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 1rem;
-}
-
-hr {
-  border: 1px solid #444;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.main-title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 3rem;
-}
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.blog-card {
-  background-color: #2a2a2a;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out;
-  display: block;
-  border: 1px solid #444;
-}
-
-.blog-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary-color);
-}
-
-.blog-card-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.blog-card-content {
-  padding: 1.5rem;
-}
-
-.blog-card-content h2 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-}
-
-.blog-card-content p {
-  color: #a0a0a0;
-  font-size: 1rem;
-  line-height: 1.4;
-}
+### Dark Theme
+- **Background**: `#1e1e1e` - Deep charcoal base
+- **Foreground**: `#e8e6e1` - Warm off-white for text
+- **Accent**: `#a78bfa` - Light purple for interactive elements
+- **Border**: `#3a3a3a` - Subtle dark borders
+- **Card**: `#2d2d2d` - Slightly lighter than background
+*/

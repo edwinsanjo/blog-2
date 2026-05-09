@@ -1,0 +1,19 @@
+---
+title: "Series 2 Part 6"
+description: "Part 6 of the second series in Finance Blog."
+date: "2026-05-09"
+tags: ["series", "advanced"]
+order: 6
+series: "Advanced Concepts in Finance Blog"
+banner: "../assets/banner.png"
+---
+
+# Series 2 Part 6
+
+This is the content for part 6 of Series 2.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+
+## Sample Image
+![Sample Image](../assets/banner.png)

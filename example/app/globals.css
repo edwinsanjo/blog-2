@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #faf8f3;
+  --foreground: #2d2d2d;
+  --card: #fff;
+  --card-foreground: #2d2d2d;
+  --popover: #fff;
+  --popover-foreground: #2d2d2d;
+  --primary: #7c3aed;
+  --primary-foreground: #fff;
+  --secondary: #f5f1e8;
+  --secondary-foreground: #2d2d2d;
+  --muted: #e8e2d5;
+  --muted-foreground: #5a5a5a;
+  --accent: #7c3aed;
+  --accent-foreground: #fff;
+  --destructive: #dc2626;
+  --destructive-foreground: #fff;
+  --border: #e0d5c7;
+  --input: #f5f1e8;
+  --ring: #7c3aed;
+  --chart-1: #7c3aed;
+  --chart-2: #a855f7;
+  --chart-3: #d946ef;
+  --chart-4: #ec4899;
+  --chart-5: #f43f5e;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #1e1e1e;
+  --foreground: #e8e6e1;
+  --card: #2d2d2d;
+  --card-foreground: #e8e6e1;
+  --popover: #2d2d2d;
+  --popover-foreground: #e8e6e1;
+  --primary: #a78bfa;
+  --primary-foreground: #1e1e1e;
+  --secondary: #3a3a3a;
+  --secondary-foreground: #e8e6e1;
+  --muted: #404040;
+  --muted-foreground: #9a9a9a;
+  --accent: #a78bfa;
+  --accent-foreground: #1e1e1e;
+  --destructive: #f87171;
+  --destructive-foreground: #1e1e1e;
+  --border: #3a3a3a;
+  --input: #3a3a3a;
+  --ring: #a78bfa;
+  --chart-1: #a78bfa;
+  --chart-2: #d8b4fe;
+  --chart-3: #e879f9;
+  --chart-4: #f472b6;
+  --chart-5: #fb7185;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .glass {
+    backdrop-filter: blur(12px);
+    background-color: rgb(255 255 255 / 0.4);
+    border: 1px solid rgb(255 255 255 / 0.6);
+  }
+
+  .dark .glass {
+    background-color: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .glass-hover {
+    backdrop-filter: blur(12px);
+    background-color: rgb(255 255 255 / 0.4);
+    border: 1px solid rgb(255 255 255 / 0.6);
+    transition: all 300ms ease;
+  }
+
+  .glass-hover:hover {
+    background-color: rgb(255 255 255 / 0.5);
+    border-color: rgb(255 255 255 / 0.8);
+  }
+
+  .dark .glass-hover:hover {
+    background-color: rgb(255 255 255 / 0.1);
+    border-color: rgb(255 255 255 / 0.2);
+  }
+}
