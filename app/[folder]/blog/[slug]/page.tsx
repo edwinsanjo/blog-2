@@ -20,13 +20,6 @@ async function markdownToHtml(markdown: string): Promise<string> {
   return result.toString();
 }
 
-function hexToRgb(hex: string): string {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-    : '138, 180, 248';
-}
-
 export async function generateStaticParams() {
   const blogs = getBlogs();
   return blogs.flatMap(blog => {
@@ -60,35 +53,41 @@ export default async function PostPage({ params }: PageProps) {
     : null;
 
   // Resolve relative image paths inside markdown
-  const content = post.content.replace(/!\[(.*?)\]\(\.\/(.*?)\)/gim, (_match, alt, src) => {
+  const content = post.content.replace(/!\[(.*?)\]\(((?!https?:\/\/|\/).*?)\)/gim, (_match, alt, src) => {
     const imageUrl = `/api/images/${path.normalize(path.join(path.dirname(post.filePath), src)).replace(/\\/g, '/')}`;
     return `![${alt}](${imageUrl})`;
   });
 
   return (
-    <div
-      className="max-w-4xl mx-auto px-6 py-12"
-      style={
-        {
-          '--primary-color': blog.primary,
-          '--primary-color-rgb': hexToRgb(blog.primary),
-        } as React.CSSProperties
-      }
-    >
-      <Link href={`/${blog.folder}/blogs`} className="inline-flex items-center text-sm font-medium text-foreground/70 hover:text-accent transition-colors mb-10 group">
+    <div className="max-w-4xl mx-auto px-6 pt-6 pb-12">
+      <Link href={`/${blog.folder}/blogs`} className="inline-flex items-center text-sm font-medium text-foreground/70 hover:text-primary transition-colors mb-8 group">
         <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Blogs
       </Link>
 
-      <article className="space-y-6">
+      <article className="space-y-8">
+        {/* Banner Image / Space at the top */}
+        <div className="rounded-2xl overflow-hidden shadow-2xl border border-[#2C2C2C] bg-[#1A1A1A] h-[300px] md:h-[450px] flex items-center justify-center relative group">
+          {bannerUrl ? (
+            <img src={bannerUrl} alt={post.frontmatter.title ?? ''} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1e1e1e] to-[#292929] flex items-center justify-center">
+              <span className="text-5xl font-bold text-white/5 group-hover:text-primary/10 transition-colors text-center px-4">
+                {post.frontmatter.title}
+              </span>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors pointer-events-none" />
+        </div>
+
         <header className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-balance text-foreground">{post.frontmatter.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-balance text-foreground tracking-tight">{post.frontmatter.title}</h1>
 
           {post.frontmatter.description && (
-            <p className="text-lg text-muted-foreground">{post.frontmatter.description}</p>
+            <p className="text-lg text-[#9a9a9a] leading-relaxed">{post.frontmatter.description}</p>
           )}
 
           {/* Metadata */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pt-4 border-t border-border">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-[#9a9a9a] pt-4 border-t border-[#2C2C2C]">
             {post.frontmatter.date && (
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
@@ -102,26 +101,19 @@ export default async function PostPage({ params }: PageProps) {
             {post.frontmatter.tags && (
               <div className="flex flex-wrap gap-2">
                 {post.frontmatter.tags.map(tag => (
-                  <span key={tag} className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent font-medium">
-                    {tag}
+                  <span key={tag} className="text-xs px-3 py-1 rounded-full bg-[#404040] text-[#9A9A9A] font-medium">
+                    #{tag}
                   </span>
                 ))}
               </div>
             )}
           </div>
-
-          {bannerUrl && (
-            <div className="rounded-2xl overflow-hidden mt-8 shadow-2xl border border-border">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={bannerUrl} alt={post.frontmatter.title ?? ''} className="w-full max-h-[500px] object-cover hover:scale-105 transition-transform duration-700" />
-            </div>
-          )}
         </header>
 
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent mb-12"></div>
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#2C2C2C] to-transparent mb-8"></div>
 
         <div
-          className="prose dark:prose-invert prose-lg max-w-none prose-headings:text-foreground prose-a:text-accent hover:prose-a:text-accent/80 prose-img:rounded-xl prose-img:shadow-lg prose-pre:bg-background prose-pre:border prose-pre:border-border"
+          className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:border-b prose-h2:border-[#2C2C2C] prose-h2:pb-2 prose-a:text-primary hover:prose-a:text-primary/80 prose-li:marker:text-primary prose-img:rounded-xl prose-img:shadow-lg prose-pre:bg-[#1A1A1A] prose-pre:border prose-pre:border-[#2C2C2C]"
           dangerouslySetInnerHTML={{ __html: await markdownToHtml(content) }}
         />
       </article>
