@@ -8,6 +8,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ folder: string; series: string; slug: string }>;
 }

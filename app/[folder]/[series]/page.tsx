@@ -5,6 +5,8 @@ import type { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ folder: string; series: string }>;
 }

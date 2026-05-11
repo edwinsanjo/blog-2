@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BookOpen, Folder, TrendingUp, Clock } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ folder: string }>;
 }
