@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -7,11 +7,24 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# The vault is expected to be mounted as a volume
+# The vault is expected to be mounted as a volume at runtime
 VOLUME ["/app/vault"]
 
 RUN npm run build
 
+# Production stage — use Next.js standalone output
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Copy only what's needed for standalone
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

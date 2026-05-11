@@ -4,47 +4,193 @@
 
 @layer base {
   :root {
-    --background: 255, 255, 255;
-    --foreground: 37, 37, 37;
-    --accent: 247, 247, 247;
-    --border: 235, 235, 235;
-    --card: 255, 255, 255;
-    --secondary: 247, 247, 247;
-    --muted-foreground: 142, 142, 142;
+    --radius: 0.625rem;
+    --background: #faf8f3;
+    --background-rgb: 250, 248, 243;
+    --foreground: #2d2d2d;
+    --foreground-rgb: 45, 45, 45;
+    --accent: #7c3aed;
+    --accent-rgb: 124, 58, 237;
+    --primary: #7c3aed;
+    --primary-rgb: 124, 58, 237;
+    --border: #e0d5c7;
+    --border-rgb: 224, 213, 199;
+    --card: #fff;
+    --card-rgb: 255, 255, 255;
+    --secondary: #f5f1e8;
+    --secondary-rgb: 245, 241, 232;
+    --muted: #e8e2d5;
+    --muted-rgb: 232, 226, 213;
+    --muted-foreground: #5a5a5a;
+    --muted-foreground-rgb: 90, 90, 90;
+    --card-foreground: #2d2d2d;
+    --card-foreground-rgb: 45, 45, 45;
+    --popover: #fff;
+    --popover-rgb: 255, 255, 255;
+    --popover-foreground: #2d2d2d;
+    --popover-foreground-rgb: 45, 45, 45;
+    --primary-foreground: #fff;
+    --primary-foreground-rgb: 255, 255, 255;
+    --secondary-foreground: #2d2d2d;
+    --secondary-foreground-rgb: 45, 45, 45;
+    --destructive: #dc2626;
+    --destructive-rgb: 220, 38, 38;
+    --destructive-foreground: #fff;
+    --destructive-foreground-rgb: 255, 255, 255;
+    --input: #f5f1e8;
+    --input-rgb: 245, 241, 232;
+    --ring: #7c3aed;
+    --ring-rgb: 124, 58, 237;
+    --chart-1: #7c3aed;
+    --chart-1-rgb: 124, 58, 237;
+    --chart-2: #a855f7;
+    --chart-2-rgb: 168, 85, 247;
+    --chart-3: #d946ef;
+    --chart-3-rgb: 217, 70, 239;
+    --chart-4: #ec4899;
+    --chart-4-rgb: 236, 72, 153;
+    --chart-5: #f43f5e;
+    --chart-5-rgb: 244, 63, 94;
   }
 
   .dark {
-    --background: 37, 37, 37;
-    --foreground: 251, 251, 251;
-    --accent: 68, 68, 68;
-    --border: 68, 68, 68;
-    --card: 37, 37, 37;
-    --secondary: 68, 68, 68;
-    --muted-foreground: 180, 180, 180;
+    --background: #1e1e1e;
+    --background-rgb: 30, 30, 30;
+    --foreground: #e8e6e1;
+    --foreground-rgb: 232, 230, 225;
+    --accent: #a78bfa;
+    --accent-rgb: 167, 139, 250;
+    --primary: #a78bfa;
+    --primary-rgb: 167, 139, 250;
+    --border: #3a3a3a;
+    --border-rgb: 58, 58, 58;
+    --card: #2d2d2d;
+    --card-rgb: 45, 45, 45;
+    --secondary: #3a3a3a;
+    --secondary-rgb: 58, 58, 58;
+    --muted: #404040;
+    --muted-rgb: 64, 64, 64;
+    --muted-foreground: #9a9a9a;
+    --muted-foreground-rgb: 154, 154, 154;
+    --card-foreground: #e8e6e1;
+    --card-foreground-rgb: 232, 230, 225;
+    --popover: #2d2d2d;
+    --popover-rgb: 45, 45, 45;
+    --popover-foreground: #e8e6e1;
+    --popover-foreground-rgb: 232, 230, 225;
+    --primary-foreground: #1e1e1e;
+    --primary-foreground-rgb: 30, 30, 30;
+    --secondary-foreground: #e8e6e1;
+    --secondary-foreground-rgb: 232, 230, 225;
+    --destructive: #f87171;
+    --destructive-rgb: 248, 113, 113;
+    --destructive-foreground: #1e1e1e;
+    --destructive-foreground-rgb: 30, 30, 30;
+    --input: #3a3a3a;
+    --input-rgb: 58, 58, 58;
+    --ring: #a78bfa;
+    --ring-rgb: 167, 139, 250;
+    --chart-1: #a78bfa;
+    --chart-1-rgb: 167, 139, 250;
+    --chart-2: #d8b4fe;
+    --chart-2-rgb: 216, 180, 254;
+    --chart-3: #e879f9;
+    --chart-3-rgb: 232, 121, 249;
+    --chart-4: #f472b6;
+    --chart-4-rgb: 244, 114, 182;
+    --chart-5: #fb7185;
+    --chart-5-rgb: 251, 113, 133;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
   }
 
   body {
-    background-color: rgb(var(--background));
-    color: rgb(var(--foreground));
-    @apply antialiased selection:bg-purple-500 selection:text-white font-sans;
+    background-color: rgb(var(--background-rgb));
+    color: rgb(var(--foreground-rgb));
+    @apply antialiased selection:bg-purple-500 selection:text-white;
+    font-family: var(--font-geist-sans);
+    transition: background-color 0.2s ease, color 0.2s ease;
     line-height: 1.6;
   }
 }
 
 @layer utilities {
-  .glass {
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-  }
+  .glass { 
+    backdrop-filter: blur(12px); 
+    background-color: rgb(255 255 255 / 0.4); 
+    border: 1px solid rgb(255 255 255 / 0.6); 
+  } 
+  .dark .glass { 
+    background-color: rgb(255 255 255 / 0.05); 
+    border: 1px solid rgb(255 255 255 / 0.1); 
+  } 
+  .glass-hover { 
+    backdrop-filter: blur(12px); 
+    background-color: #292929; 
+    border: 1px solid #222222; 
+    transition: all 300ms ease; 
+  } 
+  .glass-hover:hover { 
+    background-color: rgb(255 255 255 / 0.5); 
+    border-color: rgb(255 255 255 / 0.8); 
+  } 
+  .dark .glass-hover:hover { 
+    background-color: rgb(255 255 255 / 0.1); 
+    border-color: rgb(255 255 255 / 0.2); 
+  } 
 
-  .dark .glass {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .prose-obsidian { 
+    --tw-prose-body: var(--foreground); 
+    --tw-prose-headings: var(--foreground); 
+    --tw-prose-lead: var(--muted-foreground); 
+    --tw-prose-links: var(--accent); 
+    --tw-prose-bold: var(--foreground); 
+    --tw-prose-counters: var(--muted-foreground); 
+    --tw-prose-bullets: var(--border); 
+    --tw-prose-hr: var(--border); 
+    --tw-prose-quotes: var(--muted-foreground); 
+    --tw-prose-quote-borders: var(--border); 
+    --tw-prose-captions: var(--muted-foreground); 
+    --tw-prose-code: var(--foreground); 
+    --tw-prose-pre-code: var(--foreground); 
+    --tw-prose-pre-bg: var(--secondary); 
+    --tw-prose-th-borders: var(--border); 
+    --tw-prose-td-borders: var(--border); 
+    max-width: 65ch; 
   }
-
-  .glass-hover {
-    @apply transition-colors hover:bg-white/10 dark:hover:bg-white/5;
+  .prose-obsidian h1, .prose-obsidian h2, .prose-obsidian h3, .prose-obsidian h4, .prose-obsidian h5, .prose-obsidian h6 { 
+    font-weight: 800; 
+    letter-spacing: -0.02em; 
+    margin-top: 2em; 
+    margin-bottom: 0.8em; 
+  } 
+  .prose-obsidian h1 { font-size: 2.25em; } 
+  .prose-obsidian h2 { 
+    font-size: 1.875em; 
+    border-bottom: 1px solid var(--border); 
+    padding-bottom: 0.3em; 
+  } 
+  .prose-obsidian h3 { font-size: 1.5em; } 
+  .prose-obsidian strong { font-weight: 700; color: var(--foreground); } 
+  .prose-obsidian a { 
+    text-decoration: none; 
+    font-weight: 600; 
+    border-bottom: 1px solid var(--primary); 
+    transition: all 0.2s; 
+  } 
+  .prose-obsidian a:hover { color: var(--primary); background-color: var(--primary); color: white; } 
+  .prose-obsidian code { 
+    background-color: var(--secondary); 
+    padding: 0.2em 0.4em; 
+    border-radius: 0.3em; 
+    font-weight: 500; 
+  } 
+  .prose-obsidian blockquote { 
+    font-style: italic; 
+    border-left: 4px solid var(--primary); 
+    padding-left: 1.5em; 
   }
 }
 
