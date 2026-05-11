@@ -1,75 +1,68 @@
-# ObsidianBlog - Design Documentation
+# Design System Documentation
 
-A beautiful, minimalist blog website inspired by Obsidian with glassmorphism effects and seamless dark/light theme support.
+This document outlines the design system, aesthetics, and implementation details of the web application. The design focuses on a premium, dark-themed experience with minimalist aesthetics and dynamic accents.
 
-## Design Philosophy
+## Core Aesthetics
 
-This blog design draws inspiration from Obsidian's clean, knowledge-focused interface while incorporating modern design trends like glassmorphism. Every element serves a purpose, and the visual hierarchy guides readers naturally through the content.
+The design is centered around a **Premium Dark Theme** with high-contrast typography and subtle glassmorphic elements. The goal was to create a clean, non-distracting environment that feels state-of-the-art and visually engaging.
 
-## Color System
+### Key Principles:
+-   **Minimalism**: Unnecessary borders and elements were removed to reduce cognitive load.
+-   **Contrast**: High-contrast text on dark backgrounds ensures readability.
+-   **Dynamic Accents**: Use of dynamic brand colors to provide visual identity without overwhelming the content.
 
-### Light Theme
-- **Background**: `#faf8f3` - Warm, off-white base
-- **Foreground**: `#2d2d2d` - Deep charcoal for text
-- **Accent**: `#7c3aed` - Purple for interactive elements
-- **Border**: `#e0d5c7` - Soft tan for subtle divisions
-- **Card**: `#fff` - Pure white for content containers
+## Color Palette
 
-### Dark Theme
-- **Background**: `#1e1e1e` - Deep charcoal base
-- **Foreground**: `#e8e6e1` - Warm off-white for text
-- **Accent**: `#a78bfa` - Light purple for interactive elements
-- **Border**: `#3a3a3a` - Subtle dark borders
-- **Card**: `#2d2d2d` - Slightly lighter than background
+The color palette is strictly curated to maintain a consistent dark vibe while allowing for dynamic brand accents.
 
-The color palette uses only **4-5 colors** for consistency and reduces visual noise.
+### Base Colors:
+-   **App Background**: `#1e1e1e` (Rich, deep dark gray).
+-   **Surface/Card Background**: `#292929` (Slightly lighter dark gray for elevation).
+-   **Card Hover Background**: `#2C2C2C` (Subtle lift on interaction).
+-   **Tag/Pill Background**: `#404040` (Dark gray for contrast with text).
+
+### Typography Colors:
+-   **Primary Text**: `#e8e6e1` (Off-white, reducing harshness of pure white while maintaining high contrast).
+-   **Muted Text**: `#9a9a9a` (Soft gray for descriptions, metadata, and dates).
+-   **Tag Text**: `#9A9A9A` (Muted gray for pill labels).
+
+### Dynamic Accents:
+The application supports dynamic primary colors defined per section/blog. These colors are used for:
+-   Header icons.
+-   Section indicator lines.
+-   Hover states on titles and interactive elements (e.g., arrows).
+-   Active button states.
 
 ## Typography
 
-- **Font Stack**: Geist (sans-serif) for all text
-- **Body Text Line Height**: 1.6 (leading-relaxed)
-- **Heading Sizes**: 
-  - H1: text-5xl/6xl (homepage hero)
-  - H2: text-3xl/4xl (featured post)
-  - H3: text-xl (blog card titles)
+Typography is clean and functional, relying on system font stacks or modern sans-serif fonts.
 
-## Glassmorphism Implementation
+-   **Headings**: Bold, prominent (`text-2xl` for section items, `text-4xl` for main titles) with tight leading.
+-   **Body/Descriptions**: Smaller (`text-sm`) with relaxed leading for readability.
+-   **Metadata**: Monospace or small uppercase text for dates and counters, using muted colors.
 
-The blog uses subtle glassmorphism effects exclusively on cards and interactive elements:
+## Layouts and Components
 
-```css
-.glass {
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
+### Cards (Grid Items)
+Cards are the primary way information is presented. They feature:
+-   No borders (borderless design).
+-   Rich paddings (`p-7` or `p-8`).
+-   Subtle box shadows on hover with negative translate effect (`-translate-y-1`).
+-   An interactive arrow element that changes opacity and slides slightly on hover.
 
-.dark .glass {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-```
+### Lists
+Lists are used for sequential items (like series steps). They feature:
+-   Order numbers in circles with 10% opacity of the brand color.
+-   Clean vertical separation.
+-   Responsive hiding of secondary details (like dates and tags) on smaller screens.
 
-### Where Glass Effects Are Used
-- Blog post cards (with hover state enhancement)
-- Featured post container
-- Pagination buttons
-- Header navigation bar
-- Footer social icons
-- Theme toggle button
+### Navigation and Header
+-   Sticky header with `backdrop-blur-md` and 40% white opacity in light mode (or 5% in dark).
+-   Rounded bottom corners for a "floating" feel.
+-   Interactive mobile menu drawer with rich dark background (`#1A1A1A`/95) and strong blur effects.
 
-## Layout Structure
+## Implementation Details
 
-### Responsive Breakpoints
-- **Mobile** (< 768px): Single column, full-width content
-- **Tablet** (768px - 1024px): Grid layouts begin to activate
-- **Desktop** (> 1024px): Two-column grids, optimal reading width (max-w-6xl)
-
-### Key Sections
-1. **Header**: Sticky, glassmorphic, with navigation and implicit theme toggle
-2. **Hero**: Large, centered title and subtitle
-3. **Featured Post**: Full-width glass card with image and metadata
-4. **Blog Grid**: Responsive grid of blog post cards with glassmorphism
-5. **Pagination**: Centered controls for post navigation
-6. **Archive**: Full post list with search and year grouping
-7. **Footer**: Multiple column layout with links and social
+-   **Tailwind CSS**: Used for all styling, leveraging arbitrary values for exact color matching.
+-   **CSS Variables**: Used to pass dynamic brand colors from parent containers to deeply nested children (e.g., `--primary-color`).
+-   **Interaction Handling**: Combined Tailwind `group-hover` utilities with lightweight JavaScript event handlers where CSS variable opacity resolution required precise control.

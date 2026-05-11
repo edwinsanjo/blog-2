@@ -7,7 +7,11 @@ const vaultPath = path.join(process.cwd(), 'vault');
 export function getBlogs(): BlogMeta[] {
   const indexPath = path.join(vaultPath, 'index.json');
   const jsonContent = fs.readFileSync(indexPath, 'utf8');
-  return JSON.parse(jsonContent) as BlogMeta[];
+  const data = JSON.parse(jsonContent);
+  if (Array.isArray(data)) {
+    return data;
+  }
+  return (data.blogs || []) as BlogMeta[];
 }
 
 // A simple frontmatter parser

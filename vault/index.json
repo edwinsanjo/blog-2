@@ -1,19 +1,18 @@
-
-[
-  {
-    "name": "Tech Blog",
-    "description": "Latest tech tutorials and insights",
-    "image": "tech-cover.png",
-    "primary": "#1B5E20",
-    "enabled": true,
-    "folder": "tech"
-  },
-  {
-    "name": "Finance Blog",
-    "description": "Financial wisdom and investment guides",
-    "image": "finance-cover.png",
-    "primary": "#4A148C",
-    "enabled": true,
-    "folder": "finance"
-  }
-]
+{
+  "blogs": [
+    {
+      "name": "Tech Blog",
+      "description": "Latest tech tutorials and insights",
+      "image": "tech-cover.png",
+      "enabled": true,
+      "folder": "tech"
+    },
+    {
+      "name": "Finance Blog",
+      "description": "Financial wisdom and investment guides",
+      "image": "finance-cover.png",
+      "enabled": true,
+      "folder": "finance"
+    }
+  ]
+}

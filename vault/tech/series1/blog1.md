@@ -3,7 +3,6 @@ title: "React Advanced Patterns - Part 1"
 description: "Deep dive into React component patterns"
 date: "2026-05-09"
 tags: ["React", "JavaScript"]
-series: "React Advanced Patterns"
 order: 1
 banner: "../assets/blog2.png"
 ---

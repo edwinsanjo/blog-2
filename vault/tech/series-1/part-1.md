@@ -4,7 +4,6 @@ description: "Part 1 of the first series in Tech Blog."
 date: "2026-05-09"
 tags: ["series", "part1"]
 order: 1
-series: "Getting Started with Tech Blog"
 banner: "../assets/banner.png"
 ---
 

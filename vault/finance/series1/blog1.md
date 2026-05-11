@@ -3,7 +3,6 @@ title: "Investment Strategies - Part 1"
 description: "Fundamental analysis and long-term investing"
 date: "2026-05-12"
 tags: ["Investing", "Stocks", "Value Investing"]
-series: "Investment Strategies"
 order: 1
 banner: "../assets/invest.png"
 ---

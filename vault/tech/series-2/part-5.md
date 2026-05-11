@@ -4,7 +4,6 @@ description: "Part 5 of the second series in Tech Blog."
 date: "2026-05-09"
 tags: ["series", "advanced"]
 order: 5
-series: "Advanced Concepts in Tech Blog"
 banner: "../assets/banner.png"
 ---
 

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import type { Post, BlogMeta } from '../../../types/blog';
+import TagPostCard from '../../../components/TagPostCard';
 
 interface TagsClientProps {
   blog: BlogMeta;
@@ -21,7 +22,7 @@ export default function TagsClient({ blog, posts }: TagsClientProps) {
 
   return (
     <div
-      className="max-w-6xl mx-auto px-6 py-12"
+      className="max-w-6xl mx-auto px-6 pt-6 pb-12"
       style={{ '--primary-color': blog.primary } as React.CSSProperties}
     >
       <Link href={`/${blog.folder}`} className="inline-flex items-center text-sm font-medium text-foreground/70 hover:text-accent transition-colors mb-8 group">
@@ -61,31 +62,7 @@ export default function TagsClient({ blog, posts }: TagsClientProps) {
       <div className="space-y-6">
         {filteredPosts.length > 0 ? (
           filteredPosts.map(post => (
-            <Link
-              href={post.series ? `/${blog.folder}/${post.series}/${post.slug}` : `/${blog.folder}/blog/${post.slug}`}
-              key={`${post.series ?? ''}-${post.slug}`}
-              className="block glass p-6 rounded-xl group hover:bg-white/20 dark:hover:bg-white/10 transition-colors"
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  {post.series && (
-                    <span className="text-xs font-mono text-accent uppercase tracking-wider mb-1 block">{post.series}</span>
-                  )}
-                  <h2 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">{post.frontmatter.title}</h2>
-                  <p className="text-foreground/70 text-sm mt-1">{post.frontmatter.description}</p>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-foreground/50 font-mono whitespace-nowrap">
-                  <span>{post.frontmatter.date ?? 'No Date'}</span>
-                  {post.frontmatter.tags && (
-                    <div className="flex gap-1">
-                      {post.frontmatter.tags.slice(0, 2).map(t => (
-                        <span key={t} className="bg-background px-2 py-0.5 rounded border border-border">{t}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </Link>
+            <TagPostCard key={`${post.series ?? ''}-${post.slug}`} folder={blog.folder} post={post} />
           ))
         ) : (
           <div className="text-center py-20 text-foreground/50">No posts found for this tag.</div>

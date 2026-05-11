@@ -4,7 +4,6 @@ description: "Part 1 of the second series in Finance Blog."
 date: "2026-05-09"
 tags: ["series", "advanced"]
 order: 1
-series: "Advanced Concepts in Finance Blog"
 banner: "../assets/banner.png"
 ---
 

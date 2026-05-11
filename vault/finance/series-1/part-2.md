@@ -4,7 +4,6 @@ description: "Part 2 of the first series in Finance Blog."
 date: "2026-05-09"
 tags: ["series", "part2"]
 order: 2
-series: "Getting Started with Finance Blog"
 banner: "../assets/banner.png"
 ---
 
