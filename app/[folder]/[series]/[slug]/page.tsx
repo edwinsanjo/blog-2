@@ -69,8 +69,8 @@ export default async function SeriesPostPage({ params }: PageProps) {
       </Link>
 
       <article className="space-y-8">
-        {/* Banner Image / Space at the top (Enforced 2:1 Aspect Ratio) */}
-        <div className="rounded-2xl overflow-hidden shadow-2xl border border-[#2C2C2C] bg-[#1A1A1A] w-full aspect-[2/1] flex items-center justify-center relative group">
+        {/* Banner Image / Space at the top (Enforced 1200:500 Aspect Ratio) */}
+        <div className="rounded-2xl overflow-hidden shadow-2xl border border-[#2C2C2C] bg-[#1A1A1A] w-full aspect-[1200/500] flex items-center justify-center relative group">
           {bannerUrl ? (
             <img src={bannerUrl} alt={post.frontmatter.title ?? ''} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           ) : (
