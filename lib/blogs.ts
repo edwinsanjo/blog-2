@@ -8,10 +8,8 @@ export function getBlogs(): BlogMeta[] {
   const indexPath = path.join(vaultPath, 'index.json');
   const jsonContent = fs.readFileSync(indexPath, 'utf8');
   const data = JSON.parse(jsonContent);
-  if (Array.isArray(data)) {
-    return data;
-  }
-  return (data.blogs || []) as BlogMeta[];
+  const blogs = Array.isArray(data) ? data : (data.blogs || []);
+  return blogs.filter((blog: any) => blog.enabled !== false);
 }
 
 // A simple frontmatter parser

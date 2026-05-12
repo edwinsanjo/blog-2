@@ -2,7 +2,7 @@ services:
   blog:
     build: .
     ports:
-      - "5008:3000"
+      - "5003:3000"
     volumes:
       - ${VAULT_PATH}:/app/vault
     restart: unless-stopped

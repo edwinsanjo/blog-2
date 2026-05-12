@@ -1,6 +1,9 @@
 import { getBlogs, getPosts } from '../../../lib/blogs';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
 import { notFound } from 'next/navigation';
 import fs from 'fs';
 import path from 'path';

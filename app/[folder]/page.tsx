@@ -106,7 +106,7 @@ export default async function BlogHomePage({ params }: PageProps) {
                   {featuredPost.frontmatter.banner ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={`/api/images/${blog.folder}/assets/banner.png`}
+                      src={`/api/images/${blog.folder}/assets/${featuredPost.frontmatter.banner}`}
                       alt={featuredPost.frontmatter.title ?? ''}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />

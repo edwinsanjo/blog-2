@@ -1,6 +1,9 @@
 import { getBlogs, getPosts } from '../../../lib/blogs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
 import TagsClient from './TagsClient';
 
 interface PageProps {

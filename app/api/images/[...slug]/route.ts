@@ -33,7 +33,7 @@ export async function GET(
       headers: {
         'Content-Type': contentType,
         'Content-Length': String(stat.size),
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
       },
     });
   } catch {

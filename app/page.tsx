@@ -2,6 +2,9 @@ import { getBlogs } from '../lib/blogs';
 import type { Metadata } from 'next';
 import BlogCard from '../components/BlogCard';
 
+export const dynamic = 'force-dynamic';
+
+
 export const metadata: Metadata = {
   title: 'AxisWrite — Home',
   description: 'Browse all blogs powered by ObsidianBlog.',

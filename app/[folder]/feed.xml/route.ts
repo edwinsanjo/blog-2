@@ -2,6 +2,9 @@ import { Feed } from 'feed';
 import { getBlogs, getPosts } from '../../../lib/blogs';
 import { notFound } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function generateStaticParams() {
   const blogs = getBlogs();
   return blogs.map(blog => ({ folder: blog.folder }));
